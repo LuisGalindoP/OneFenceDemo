@@ -1,11 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+import TopNav from './components/TopNav';
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
-    <div>
-      <h1>Main app</h1>
-      
+    <div className="container bg-red-50">
+      <TopNav/>
+        <Dashboard/>
     </div>
   );
 }

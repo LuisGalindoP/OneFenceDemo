@@ -1,17 +1,24 @@
 import React from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
+} from "react-router-dom";
 
-import TopNav from "./components/TopNav";
-import Dashboard from "./components/Dashboard";
-import BottomBar from "./components/BottomBar";
+import Dashboard from "./views/Dashboard";
+import Customize from "./views/Customize";
+
 
 
 function App() {
     return (
-        <div className="bg-topNav">
-            <TopNav/>
-            <Dashboard/>
-            <BottomBar/>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route exact path="/" element={<Dashboard />} />
+                <Route exact path="/customize" element={<Customize />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 

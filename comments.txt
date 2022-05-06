@@ -1,0 +1,2 @@
+Implementing the customize image movement should be easy
+Be careful naming things on your database local and mongoDB

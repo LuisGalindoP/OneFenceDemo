@@ -1,13 +1,44 @@
-import React, {useEffect} from 'react';
-import {
-    Link
-} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
+import {Link} from "react-router-dom";
+import {navigate} from "@reach/router";
 
 import TopNav from "../components/TopNav";
 import BottomBar from "../components/BottomBar";
+import * as response from "autoprefixer";
 
 
-const Dashboard = () => {
+
+const Dashboard = (props) => {
+    //State from App using props
+    const {allFences, setAllFences} = props;
+
+    const [deletedId, setDeletedId] = useState(0);
+
+    //Get axios requests
+    useEffect(()=>{
+        axios.get('http://localhost:8000/')
+            .then((res)=>{
+                console.log(res.data);
+                setAllFences(res.data);
+            })
+            .catch((err)=>{
+                console.log('Error when requesting allFences in axios function');
+            })
+    }, [deletedId]);
+
+    //Delete fence function
+    const deleteFence = (idDelete) => {
+        console.log("THIS IS ID DELETE", idDelete);
+        axios.post(`http://localhost:8000/fence/${idDelete}`)
+        .then(res =>{
+            console.log(response.data);
+            setDeletedId(idDelete);
+        })
+            .catch(err=>{
+                console.log(err);
+        })
+    }
     return (
         <div>
             <div>
@@ -23,7 +54,7 @@ const Dashboard = () => {
                 <div className="pb-9 pl-4 grid grid-cols-2 gap-8 items-center justify-items-center">
                     <div className="self-auto">
                         <button
-                            className={"h-12 w-40 bg-fuchsia-500 hover:bg-sky-300 text-white text-xl font-bold p-2 rounded"}>
+                            className={"h-12 w-32 bg-fuchsia-500 hover:bg-sky-300 text-white text-xl font-bold rounded"}>
                             <Link to={"/customize"}>Start Here</Link>
                         </button>
 
@@ -33,7 +64,7 @@ const Dashboard = () => {
                             className="drop-shadow-2xl"
                             src={require("../images/Fence_10.png")}
                             alt="Fence Main"
-                            style={{width:"50%"}}/>
+                            style={{width:"70%"}}/>
                     </div>
                 </div>
                 <div className="bg-topNav py-8">
@@ -50,11 +81,15 @@ const Dashboard = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr className="text-center text-white">
-                                <td className="">Super long design name</td>
-                                <td className="">Edit</td>
-                                <td className="">Delete</td>
-                            </tr>
+                            {allFences.map((fence, index) => {
+                                return (
+                                    <tr key={index} className="text-center text-white">
+                                        <td className=""><Link to={`/fence/${fence._id}`}>{fence.name}</Link></td>
+                                        <td className="">Edit</td>
+                                        <td><button onClick={event => {deleteFence(fence._id)}}>Delete</button></td>
+                                    </tr>
+                                )
+                            })}
                             </tbody>
                         </table>
                     </div>

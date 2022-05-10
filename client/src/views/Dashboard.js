@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {navigate} from "@reach/router";
 
 import TopNav from "../components/TopNav";
 import BottomBar from "../components/BottomBar";
@@ -12,32 +11,30 @@ import * as response from "autoprefixer";
 const Dashboard = (props) => {
     //State from App using props
     const {allFences, setAllFences} = props;
-
     const [deletedId, setDeletedId] = useState(0);
+
 
     //Get axios requests
     useEffect(()=>{
         axios.get('http://localhost:8000/')
             .then((res)=>{
-                console.log(res.data);
                 setAllFences(res.data);
             })
             .catch((err)=>{
                 console.log('Error when requesting allFences in axios function');
             })
-    }, [deletedId]);
+    }, []);
+
 
     //Delete fence function
     const deleteFence = (idDelete) => {
-        console.log("THIS IS ID DELETE", idDelete);
         axios.post(`http://localhost:8000/fence/${idDelete}`)
-        .then(res =>{
-            console.log(response.data);
-            setDeletedId(idDelete);
-        })
+            .then(res =>{
+                setDeletedId(idDelete);
+            })
             .catch(err=>{
                 console.log(err);
-        })
+            })
     }
     return (
         <div>
@@ -76,17 +73,17 @@ const Dashboard = (props) => {
                             <thead>
                             <tr className="text-center text-yellow-300">
                                 <th className="px-4">Design Name</th>
-                                <th className="px-4">Edit</th>
-                                <th className="px-4">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
                             {allFences.map((fence, index) => {
                                 return (
                                     <tr key={index} className="text-center text-white">
-                                        <td className=""><Link to={`/fence/${fence._id}`}>{fence.name}</Link></td>
-                                        <td className="">Edit</td>
-                                        <td><button onClick={event => {deleteFence(fence._id)}}>Delete</button></td>
+                                        <td>
+                                            <button>
+                                                <Link to={`/fence/${fence._id}`}>{fence.name}</Link>
+                                            </button>
+                                        </td>
                                     </tr>
                                 )
                             })}

@@ -30,7 +30,7 @@ module.exports = {
 
     //FIND ONE FENCE BY ID
     findOneFence: (req, res) => {
-        Fence.findOne({id: req.params.id})
+        Fence.findOne({_id: req.params.id})
             .then((oneFence) => {
                 console.log(oneFence);
                 res.json(oneFence);

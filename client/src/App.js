@@ -15,6 +15,8 @@ import FenceInfo from "./views/FenceInfo";
 function App() {
     //lifted States
     const [allFences, setAllFences] = useState([]);
+    const [id, setId] = useState("");
+
     return (
         <BrowserRouter>
             <Routes>
@@ -23,7 +25,7 @@ function App() {
                     setAllFences={setAllFences}
                 />} />
                 <Route exact path="/customize" element={<Customize />} />
-                <Route exact path="/fence/:id" element={<FenceInfo />} />
+                <Route path="/fence/:id" element={<FenceInfo/>} />
             </Routes>
         </BrowserRouter>
     );

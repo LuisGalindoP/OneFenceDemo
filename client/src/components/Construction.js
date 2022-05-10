@@ -1,23 +1,22 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {useState} from 'react';
 
-const Covers = (props) => {
+const Construction = (props) => {
     //Lifted states from Customize parent component
     const {section, setSection} = props;
-    const {covers, setCovers} = props;
+    const {construction, setConstruction} = props;
+
 
     const selectionHandler = (event) => {
         event.preventDefault();
-        setCovers("square")
-        setSection(2);
+        setConstruction("Open")
+        setSection(4);
     };
-
     return (
         <div>
             <div className={"bg-sky-900"}>
                 <div className=" pt-9 text-center">
-                    <h1 className="text-2xl font-Oswald text-yellow-300 pl-4">Let's get some covers</h1>
-                    <h1 className="text-2xl font-Oswald text-yellow-300 pl-4">{covers}</h1>
+                    <h1 className="text-2xl font-Oswald text-yellow-300 pl-4">Select the construction of your wall</h1>
+                    <h1 className="text-2xl font-Oswald text-yellow-300 pl-4">{construction}</h1>
                     <h1 className="text-2xl font-Oswald text-yellow-300 pl-4">{section}</h1>
                 </div>
                 <div className="flex justify-center items-center my-12">
@@ -63,4 +62,4 @@ const Covers = (props) => {
     )
 }
 
-export default Covers;
+export default Construction;

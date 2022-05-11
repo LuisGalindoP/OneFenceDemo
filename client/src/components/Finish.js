@@ -1,4 +1,17 @@
 import React, {useState} from 'react';
+import FinishImages from "../imagesControllers/FinishImages";
+
+import finish_0 from "../images/finish_00.png";
+import finish_1 from "../images/finish_01.png";
+import finish_2 from "../images/finish_02.png";
+import finish_3 from "../images/finish_03.png";
+import finish_4 from "../images/finish_04.png";
+import finish_5 from "../images/finish_05.png";
+import finish_6 from "../images/finish_06.png";
+
+//Create an array of image files
+const images = [finish_0, finish_1, finish_2, finish_3, finish_4, finish_5, finish_6];
+
 
 const Finish = (props) => {
     //Lifted states from Customize parent component

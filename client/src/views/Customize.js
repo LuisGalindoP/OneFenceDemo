@@ -10,8 +10,6 @@ import Construction from "../components/Construction";
 import Submit from "../components/Submit";
 import Name from "../components/Name";
 
-
-
 const Customize = (props) => {
     //Parent states
     const [section, setSection] = useState(0);
@@ -20,6 +18,8 @@ const Customize = (props) => {
     const [finish, setFinish] = useState("")
     const [construction, setConstruction] = useState("")
     const [name, setName] = useState("");
+
+
 
     const {allFences, setAllFences} = props;
 

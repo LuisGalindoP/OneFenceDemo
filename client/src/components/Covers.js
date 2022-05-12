@@ -19,7 +19,7 @@ const Covers = (props) => {
     const {section, setSection} = props;
     const {covers, setCovers} = props;
 
-    // //States for images
+    //States for images
     const [imageCenter, setImageCenter] = useState(images[1]);
     const [imageNext, setImageNext] = useState(images[2]);
     const [imagePrevious, setImagePrevious] = useState(images[0]);
@@ -28,12 +28,7 @@ const Covers = (props) => {
     const [nextIndex, setNextIndex] = useState(2)
     const [previousIndex, setPreviousIndex] = useState(0)
 
-    //Selection Handler
-    const selectionHandler = (event) => {
-        event.preventDefault();
-        setCovers(CoversImages[centerIndex].name)
-        setSection(2);
-    };
+
 
 
 //Functions for the control of the images movement
@@ -65,6 +60,13 @@ const Covers = (props) => {
             setNextIndex(nextIndex -1);
         }
     }
+
+    //Selection Handler
+    const selectionHandler = (event) => {
+        event.preventDefault();
+        setCovers(CoversImages[centerIndex].name)
+        setSection(2);
+    };
 
     // useEffect(() => {}, [])
 

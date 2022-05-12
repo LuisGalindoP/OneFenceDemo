@@ -9,7 +9,7 @@ const CoversImages = [
     },
     {
         file: "cover_2",
-        name: "trapezoid Cover"
+        name: "Trapezoid Cover"
     },
     {
         file: "cover_3",

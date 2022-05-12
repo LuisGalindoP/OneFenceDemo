@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {Link} from "react-router-dom";
 import {navigate} from "@reach/router";
-
+import defineFinalImage from "../imagesControllers/DefineFinalImage";
 
 const Submit = (props) => {
     const {section, covers, length, finish, construction, name,  allFences, setAllFences} = props;
@@ -29,6 +29,9 @@ const Submit = (props) => {
             })
         navigate("/").then(()=>{});
     }
+
+    //CALL FUNCTION TO DEFINE FINAL IMAGE TO SHOW
+    const finalImage = defineFinalImage(construction, covers, finish);
 
     return (
         <div>
@@ -74,21 +77,29 @@ const Submit = (props) => {
                     <div>
                         <img
                             className="drop-shadow-2xl"
-                            src={require("../images/Fence_10.png")}
+                            src={finalImage}
                             alt="Fence Main"
                             style={{width:"70%"}}/>
                     </div>
                 </div>
-                <div className={"text-center pb-8"}>
-                    <form onSubmit={createFence}>
-
+                <div className={"flex justify-center gap-8"}>
+                    <div className={"text-center pb-8"}>
                         <button
-                            className={"h-8 w-32 bg-fuchsia-500 hover:bg-sky-300 text-white text-l font-bold rounded"}
-                            type={"submit"}
-                        >
-                            Submit
+                            className={"h-8 w-32 bg-gray-400 hover:bg-sky-300 text-white text-l font-bold rounded"}>
+                            <Link to={`/`}>Cancel</Link>
+
                         </button>
-                    </form>
+                    </div>
+                    <div className={"text-center pb-8"}>
+                        <form onSubmit={createFence}>
+                            <button
+                                className={"h-8 w-32 bg-fuchsia-500 hover:bg-sky-300 text-white text-l font-bold rounded"}
+                                type={"submit"}
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

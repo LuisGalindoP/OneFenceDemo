@@ -51,7 +51,7 @@ const Dashboard = (props) => {
                 <div className="pb-9 pl-4 grid grid-cols-2 gap-8 items-center justify-items-center">
                     <div className="self-auto">
                         <button
-                            className={"h-12 w-32 bg-fuchsia-500 hover:bg-sky-300 text-white text-xl font-bold rounded"}>
+                            className={"h-32 w-32 bg-fuchsia-500 hover:bg-sky-300 text-white text-xl font-bold rounded-full"}>
                             <Link to={"/customize"}>Start Here</Link>
                         </button>
 
@@ -66,14 +66,12 @@ const Dashboard = (props) => {
                 </div>
                 <div className="bg-topNav py-8">
                     <div>
-                        <h1 className="text-4xl font-Oswald text-white mb-9 pl-4 text-center">Previous designs</h1>
+                        <h1 className="text-4xl font-Oswald text-yellow-300 mb-9 pl-4 text-center">Previous designs</h1>
                     </div>
                     <div className="px-12">
                         <table className="table-auto m-auto">
                             <thead>
-                            <tr className="text-center text-yellow-300">
-                                <th className="px-4">Design Name</th>
-                            </tr>
+
                             </thead>
                             <tbody>
                             {allFences.map((fence, index) => {

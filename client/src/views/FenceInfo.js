@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {navigate} from "@reach/router";
 import {Link, useParams} from "react-router-dom";
+import defineFinalImage from "../imagesControllers/DefineFinalImage";
 
 import TopNav from "../components/TopNav";
 import BottomBar from "../components/BottomBar";
@@ -33,6 +34,8 @@ const FenceInfo = (props) => {
         navigate("/").then(()=>{})
     }
 
+    //CALL FUNCTION TO DEFINE FINAL IMAGE TO SHOW
+    const finalImage = defineFinalImage(fence.construction, fence.covers, fence.finish);
 
     return (
         <div>
@@ -80,7 +83,7 @@ const FenceInfo = (props) => {
                     <div>
                         <img
                             className="drop-shadow-2xl"
-                            src={require("../images/Fence_10.png")}
+                            src={finalImage}
                             alt="Fence Main"
                             style={{width:"70%"}}/>
                     </div>

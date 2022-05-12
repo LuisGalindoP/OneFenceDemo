@@ -19,8 +19,6 @@ const Customize = (props) => {
     const [construction, setConstruction] = useState("")
     const [name, setName] = useState("");
 
-
-
     const {allFences, setAllFences} = props;
 
     useEffect (() => {

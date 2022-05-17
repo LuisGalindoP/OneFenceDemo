@@ -5,11 +5,16 @@ const Length = (props) => {
     //Lifted states from Customize parent component
     const {section, setSection} = props;
     const {length, setLength} = props;
+    const {idUpdate} = props
     const [error, setError] = useState(false);
+    const {id} = props;
+
+
+
+
 
     const selectionHandler = (event) => {
 
-        console.log(length)
         if (length > 5) {
             event.preventDefault();
             setLength(length);
@@ -17,8 +22,8 @@ const Length = (props) => {
         } else {
             event.preventDefault();
             setError(true);
-            // console.log("NO NO NO NO")
         }
+
 
     };
 
@@ -32,11 +37,12 @@ const Length = (props) => {
                             <input
                                 onChange={(event) => {setLength(event.target.value)}}
                                 type="number"
+                                value={length}
                                 className={"my-6 rounded w-16 text-center"}
                             />
                             <h1 className="text-xl font-Oswald text-yellow-300">ft</h1>
                         </div>
-                            <h1 className="text-l font-Oswald text-red-500" style={{display: error ? "block" : "none"}}>Length should be more than 6 ft</h1>
+                        <h1 className="text-l font-Oswald text-red-500" style={{display: error ? "block" : "none"}}>Length should be more than 6 ft</h1>
                         <button
                             className={"h-8 w-32 bg-fuchsia-500 hover:bg-sky-300 text-white text-l font-bold rounded my-6"}
                             type={"submit"}

@@ -10,12 +10,12 @@ import * as response from "autoprefixer";
 
 const Dashboard = (props) => {
     //State from App using props
-    const {allFences, setAllFences} = props;
+    const {allFences, setAllFences, idUpdate, setIdUpdate} = props;
     const [deletedId, setDeletedId] = useState(0);
-
 
     //Get axios requests
     useEffect(()=>{
+        setIdUpdate(null);
         axios.get('http://localhost:8000/')
             .then((res)=>{
                 setAllFences(res.data);
@@ -25,17 +25,6 @@ const Dashboard = (props) => {
             })
     }, []);
 
-
-    //Delete fence function
-    const deleteFence = (idDelete) => {
-        axios.post(`http://localhost:8000/fence/${idDelete}`)
-            .then(res =>{
-                setDeletedId(idDelete);
-            })
-            .catch(err=>{
-                console.log(err);
-            })
-    }
     return (
         <div>
             <div>

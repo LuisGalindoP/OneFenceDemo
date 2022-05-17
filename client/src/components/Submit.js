@@ -5,29 +5,48 @@ import {navigate} from "@reach/router";
 import defineFinalImage from "../imagesControllers/DefineFinalImage";
 
 const Submit = (props) => {
-    const {section, covers, length, finish, construction, name,  allFences, setAllFences} = props;
+    const {section, covers, length, finish, construction, name,  allFences, setAllFences, idUpdate, id} = props;
 
     let postsNumber = Math.round(length/6 + 1);
     let coversNumber = Math.round(postsNumber * 2);
 
     const createFence = (event) => {
-        // event.preventDefault();
-        axios.post('http://localhost:8000/fence/new', {
-            "name": name,
-            "length": length,
-            "covers": covers,
-            "finish": finish,
-            "construction": construction,
-            "postsNumber": postsNumber,
-            "coversNumber": coversNumber
-        })
-            .then((response) =>{
-                setAllFences([...allFences, response.data]);
+        if (!idUpdate) {
+            axios.post('http://localhost:8000/fence/new', {
+                "name": name,
+                "length": length,
+                "covers": covers,
+                "finish": finish,
+                "construction": construction,
+                "postsNumber": postsNumber,
+                "coversNumber": coversNumber
             })
-            .catch((error) => {
-                console.log(error);
+                .then((response) =>{
+                    setAllFences([...allFences, response.data]);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            navigate("/").then(()=>{});
+        } else {
+            axios.put(`http://localhost:8000/fence/edit/${idUpdate}`, {
+                "name": name,
+                "length": length,
+                "covers": covers,
+                "finish": finish,
+                "construction": construction,
+                "postsNumber": postsNumber,
+                "coversNumber": coversNumber
             })
-        navigate("/").then(()=>{});
+                .then((response) =>{
+                    setAllFences([...allFences, response.data]);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            navigate("/").then(()=>{});
+
+        }
     }
 
     //CALL FUNCTION TO DEFINE FINAL IMAGE TO SHOW

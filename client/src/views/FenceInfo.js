@@ -9,15 +9,20 @@ import BottomBar from "../components/BottomBar";
 
 const FenceInfo = (props) => {
     const [fence, setFence] = useState({});
+
     //Get id from props
     const {id} = useParams();
+    const {idUpdate, setIdUpdate} = props;
+
 
     //Get the fence details with axios and the id from the url
     useEffect(() => {
         axios.get(`http://localhost:8000/fence/${id}`)
             .then((res) => {
                 // console.log(res.data);
+                setIdUpdate(id);
                 setFence(res.data);
+                // setUpdating(true);
             })
             .catch((err) => {
                 console.log(err);
@@ -88,9 +93,12 @@ const FenceInfo = (props) => {
                             style={{width:"70%"}}/>
                     </div>
                 </div>
-                <div className={"text-center py-4"}>
+                <div className={"flex justify-center gap-6 py-6"}>
+                    <button
+                        className={"h-8 w-32 bg-gray-400 hover:bg-sky-300 text-white text-l font-bold rounded"}>
+                        <Link to={"/"}>Dashboard</Link>
+                    </button>
                     <form onSubmit={deleteFence}>
-
                         <button
                             className={"h-8 w-32 bg-red-500 hover:bg-sky-300 text-white text-l font-bold rounded"}
                             type={"submit"}
@@ -98,6 +106,13 @@ const FenceInfo = (props) => {
                             Delete
                         </button>
                     </form>
+
+                        <button
+                            className={"h-8 w-32 bg-green-500 hover:bg-sky-300 text-white text-l font-bold rounded"}>
+                            <Link to={"/customize"}>Update</Link>
+
+                        </button>
+
                 </div>
             </div>
             <BottomBar/>

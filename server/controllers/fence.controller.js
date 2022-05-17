@@ -41,6 +41,22 @@ module.exports = {
             })
     },
 
+    //UPDATE A FENCE
+    updateFence: (req, res) => {
+        Fence.findOneAndUpdate(
+            {_id: req.params.id},
+            req.body,
+            {new: true, runValidators: true}
+        )
+            .then((updatedFence) => {
+                console.log(updatedFence);
+                res.json(updatedFence);
+            })
+            .catch((err)=>{
+                res.status(400).json(err);
+            })
+    },
+
     //DELETE A FENCE
     deleteFence: (req, res) => {
         Fence.deleteOne({_id: req.params.id})

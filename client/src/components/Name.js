@@ -31,6 +31,7 @@ const Name = (props) => {
                             <input
                                 onChange={(event) => {setName(event.target.value)}}
                                 type="text"
+                                value={name}
                                 className={"my-6 rounded w-64 text-center"}
                             />
                             <h1 className="text-l font-Oswald text-red-500"
